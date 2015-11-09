@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using PjNewsMVVM2.Data;
 
-namespace PjNewsMVVM2.Model
+namespace PjNewsMVVM2.Helpers
 {
 
     public class NewsResult

@@ -99,14 +99,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\AlternativeArticle.cs" />
+    <Compile Include="Helpers\AlternativeArticle.cs" />
     <Compile Include="Data\ArticleNEW.cs" />
     <Compile Include="Data\NewsGrabber.cs" />
-    <Compile Include="Data\NewsNEW.cs" />
+    <Compile Include="Model\NewsNEW.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\News.cs" />
+    <Compile Include="Helpers\News.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\NewsViewModel.cs" />
     <Compile Include="ViewModel\ArticleViewModel.cs" />
@@ -137,9 +137,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

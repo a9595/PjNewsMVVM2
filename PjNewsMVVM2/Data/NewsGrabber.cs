@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PjNewsMVVM2.Model;
+using PjNewsMVVM2.Helpers;
 
 namespace PjNewsMVVM2.Data
 {

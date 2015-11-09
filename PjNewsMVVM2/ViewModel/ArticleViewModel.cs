@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Interop;
 using PjNewsMVVM2.Data;
+using PjNewsMVVM2.Helpers;
 using Prism.Mvvm;
 
 namespace PjNewsMVVM2.ViewModel
 {
     class ArticleViewModel : BindableBase
     {
-        private ArticleResult _articleResult;
+        private ArticleNEW _article;
 
         public ArticleViewModel()
         {
-            _articleResult = new ArticleResult();
+            _articleResult = new ArticleNEW();
 
         }
 

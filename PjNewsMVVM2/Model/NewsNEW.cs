@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PjNewsMVVM2.Model;
+﻿using System.Collections.Generic;
+using PjNewsMVVM2.Data;
+using PjNewsMVVM2.Helpers;
 
-namespace PjNewsMVVM2.Data
+namespace PjNewsMVVM2.Model
 {
     class NewsNEW
     {
@@ -13,7 +10,7 @@ namespace PjNewsMVVM2.Data
         public List<ArticleNEW> Articles { get; set; }
 
 
-        public NewsNEW(News news)
+        public NewsNEW()
         {
             Articles = new List<ArticleNEW>();
             // TODO: Articels = Service.GetArticles
