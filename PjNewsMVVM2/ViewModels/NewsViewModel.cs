@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Interop;
-using PjNewsMVVM2.Data;
-using PjNewsMVVM2.Helpers;
+﻿using System.Collections.ObjectModel;
 using PjNewsMVVM2.Model;
 using Prism.Mvvm;
 
-namespace PjNewsMVVM2.ViewModel
+namespace PjNewsMVVM2.ViewModels
 {
-    class NewsViewModel : BindableBase
+    public class NewsViewModel : BindableBase
     {
         //fields
         NewsNEW news;
@@ -25,8 +17,13 @@ namespace PjNewsMVVM2.ViewModel
             news = new NewsNEW();
             foreach (var article in news.Articles)
             {
-                var newArticle = new ArticleViewModel();
-                _articles.Add(newArticle);
+                ArticleViewModel newArticleViewModel = new ArticleViewModel(
+                    article.Date,
+                    article.Link,
+                    article.Title
+                    );
+
+                _articles.Add(newArticleViewModel);
             }
         }
 

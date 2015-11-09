@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using PjNewsMVVM2.Data;
 using PjNewsMVVM2.Helpers;
 using PjNewsMVVM2.Model;
+using PjNewsMVVM2.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,12 +26,13 @@ namespace PjNewsMVVM2
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public NewsViewModel MainNewsViewModel { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
-
-            News news = NewsGrabber.GetNews();
-            NewsNEW newNEW = new NewsNEW(news);
+            
+            //NewsNEW newNEW = new NewsNEW();
+            MainNewsViewModel = new NewsViewModel();
             int a = 0;
         }
     }

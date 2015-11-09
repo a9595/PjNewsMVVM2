@@ -5,9 +5,21 @@
     xmlns:local="using:PjNewsMVVM2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:PjNewsMVVM2.ViewModels"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    </Grid>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Horizontal">
+        <ListView x:Name="MainList"
+                ItemsSource="{x:Bind MainNewsViewModel.Articles, Mode=OneWay}"
+                  MinWidth="250" Margin="5">
+        </ListView>
+        
+    </StackPanel>
+    
+    
+    
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    </Grid>-->
 </Page>
