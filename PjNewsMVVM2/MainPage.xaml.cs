@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using PjNewsMVVM2.Data;
+using PjNewsMVVM2.Model;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -25,6 +27,10 @@ namespace PjNewsMVVM2
         public MainPage()
         {
             this.InitializeComponent();
+
+            News news = NewsGrabber.GetNews();
+            NewsNEW newNEW = new NewsNEW(news);
+            int a = 0;
         }
     }
 }

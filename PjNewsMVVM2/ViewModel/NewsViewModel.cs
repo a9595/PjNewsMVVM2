@@ -21,13 +21,13 @@ namespace PjNewsMVVM2.ViewModel
 
         public NewsViewModel()
         {
-            var downloadedNews = NewsGrabber.GetNews();
+            //var downloadedNews = NewsGrabber.GetNews();
 
-            foreach (var VARIABLE in downloadedNews)
-            {
+            //foreach (var VARIABLE in downloadedNews)
+            //{
                 
-            }
-            news = new News();
+            //}
+            //news = new News();
 
         }
 
