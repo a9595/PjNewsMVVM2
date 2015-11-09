@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 
 namespace PjNewsMVVM2.Data
 {
-    public class Result
+    public class ArticleResult
     {
-        public Result()
+        public ArticleResult()
         {
             //TODO:add images support
             //Image = new List<string>();
@@ -45,10 +45,10 @@ namespace PjNewsMVVM2.Data
         public int Offset { get; set; }
 
         //[JsonProperty("results")]
-        //public Result Results { get; set; }
+        //public ArticleResult Results { get; set; }
 
         [JsonProperty("results")]
-        public IList<Result> Results { get; set; }
+        public IList<ArticleResult> Results { get; set; }
 
         [JsonProperty("cookies")]
         public IList<string> Cookies { get; set; }

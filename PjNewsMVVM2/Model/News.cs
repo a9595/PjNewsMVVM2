@@ -4,6 +4,35 @@ using PjNewsMVVM2.Data;
 
 namespace PjNewsMVVM2.Model
 {
+
+    public class NewsResult
+    {
+        public NewsResult()
+        {
+        }
+
+        [JsonProperty("date")]
+        public string Date { get; set; }
+
+        [JsonProperty("link")]
+        public string Link { get; set; }
+
+        [JsonProperty("link/_text")]
+        public string LinkText { get; set; }
+
+        [JsonProperty("link/_source")]
+        public string LinkSource { get; set; }
+
+        [JsonProperty("link/_title")]
+        public string LinkTitle { get; set; }
+
+        public ArticleAlternative ArticleItem { get; set; }
+
+        public override string ToString()
+        {
+            return Date + "  " + LinkText;
+        }
+    }
     public class News
     {
         public News()
@@ -46,34 +75,7 @@ namespace PjNewsMVVM2.Model
 
     }
 
-    public class NewsResult
-    {
-        public NewsResult()
-        {
-        }
 
-        [JsonProperty("date")]
-        public string Date { get; set; }
-
-        [JsonProperty("link")]
-        public string Link { get; set; }
-
-        [JsonProperty("link/_text")]
-        public string LinkText { get; set; }
-
-        [JsonProperty("link/_source")]
-        public string LinkSource { get; set; }
-
-        [JsonProperty("link/_title")]
-        public string LinkTitle { get; set; }
-
-        public ArticleAlternative ArticleItem { get; set; }
-
-        public override string ToString()
-        {
-            return Date + "  " + LinkText;
-        }
-    }
 
     public class OutputProperty
     {
@@ -85,5 +87,5 @@ namespace PjNewsMVVM2.Model
         public string Type { get; set; }
     }
 
-    
+
 }
