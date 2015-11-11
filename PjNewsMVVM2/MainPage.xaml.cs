@@ -33,7 +33,18 @@ namespace PjNewsMVVM2
             
             //NewsNEW newNEW = new NewsNEW();
             MainNewsViewModel = new NewsViewModel();
-            int a = 0;
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //var selectedArticle = sender as ArticleViewModel;
+            var selectedArticle = ((sender as ListView).SelectedItem) as ArticleViewModel; 
+            
+            if (selectedArticle != null)
+            {
+                textBlockSelectedTitle.Text = selectedArticle.Title;
+                Frame.Navigate(typeof (ArticleView), selectedArticle);
+            }
         }
     }
 }

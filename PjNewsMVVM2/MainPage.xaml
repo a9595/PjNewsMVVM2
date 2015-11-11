@@ -9,12 +9,15 @@
     mc:Ignorable="d">
 
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Horizontal">
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Vertical">
+        <TextBlock x:Name="textBlockSelectedTitle" TextWrapping="Wrap" Text="TextBlock"/>
         <ListView x:Name="MainList"
+                  SelectionChanged="Selector_OnSelectionChanged"
                 ItemsSource="{x:Bind MainNewsViewModel.Articles, Mode=OneWay}"
                   MinWidth="250" Margin="5">
         </ListView>
         
+
     </StackPanel>
     
     
