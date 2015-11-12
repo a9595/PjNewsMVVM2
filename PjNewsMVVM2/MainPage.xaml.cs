@@ -30,7 +30,7 @@ namespace PjNewsMVVM2
         public MainPage()
         {
             this.InitializeComponent();
-            
+
             //NewsNEW newNEW = new NewsNEW();
             MainNewsViewModel = new NewsViewModel();
         }
@@ -38,12 +38,12 @@ namespace PjNewsMVVM2
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //var selectedArticle = sender as ArticleViewModel;
-            var selectedArticle = ((sender as ListView).SelectedItem) as ArticleViewModel; 
-            
+            var selectedArticle = ((sender as ListView).SelectedItem) as ArticleViewModel;
+
             if (selectedArticle != null)
             {
                 textBlockSelectedTitle.Text = selectedArticle.Title;
-                Frame.Navigate(typeof (ArticleView), selectedArticle);
+                Frame.Navigate(typeof(ArticleView), selectedArticle);
             }
         }
     }

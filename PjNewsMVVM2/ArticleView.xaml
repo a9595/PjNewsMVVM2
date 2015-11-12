@@ -9,11 +9,9 @@
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <TextBlock x:Name="TextBlockTitle" Text="Title" FontSize="26.667" FontWeight="Bold" 
-                   ></TextBlock>
+        <TextBlock x:Name="TextBlockTitle" TextWrapping="WrapWholeWords" Text="Title" FontSize="26.667" FontWeight="Bold" Margin="0,0,10,0" />
 
 
-        <TextBlock x:Name="TextBlockContent" Text="Content" 
-                   ></TextBlock>
+        <RichTextBlock x:Name="RichContent" />
     </StackPanel>
 </Page>

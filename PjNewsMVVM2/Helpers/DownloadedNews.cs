@@ -25,16 +25,16 @@ namespace PjNewsMVVM2.Helpers
         [JsonProperty("link/_title")]
         public string LinkTitle { get; set; }
 
-        public ArticleAlternative ArticleItem { get; set; }
+        public DownloadedArticle DownloadedArticleItem { get; set; }
 
         public override string ToString()
         {
             return Date + "  " + LinkText;
         }
     }
-    public class News
+    public class DownloadedNews
     {
-        public News()
+        public DownloadedNews()
         {
         }
 
