@@ -27,7 +27,15 @@ namespace PjNewsMVVM2
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public NewsViewModel MainNewsViewModel { get; set; }
+        public NewsViewModel MainNewsViewModel
+        {
+            get { return _news; }
+            set { _news = value; }
+        }
+
+        private static bool _isDownloaded = false;
+        private static NewsViewModel _news = null;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -35,8 +43,15 @@ namespace PjNewsMVVM2
 
 
             //NewsNEW newNEW = new NewsNEW();
-            MainNewsViewModel = new NewsViewModel();
+            if (!_isDownloaded && MainNewsViewModel == null)
+            {
+                MainNewsViewModel = new NewsViewModel();
+
+                _isDownloaded = true;
+            }
         }
+
+
 
 
 

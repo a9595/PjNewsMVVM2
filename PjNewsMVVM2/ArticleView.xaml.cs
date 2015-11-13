@@ -33,7 +33,7 @@ namespace PjNewsMVVM2
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             {
                 //Frame.Navigate(typeof(ArticleView), selectedArticle);
-                Frame.Navigate(typeof (MainPage));
+                Frame.Navigate(typeof(MainPage));
             };
         }
 
@@ -42,12 +42,14 @@ namespace PjNewsMVVM2
             ArticleViewModel article = e.Parameter as ArticleViewModel;
 
             TextBlockTitle.Text = article.Title;
-            
-            var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
-            string content = article2.Results.First().Content;
-            
+
+            //var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
+            //var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
+            //string content = article2.Results.First().Content;
+            string content = "content";
+
             fillContent(content);
-            
+
             base.OnNavigatedTo(e);
         }
 
