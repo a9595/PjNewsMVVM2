@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,6 +30,11 @@ namespace PjNewsMVVM2
         public ArticleView()
         {
             this.InitializeComponent();
+            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
+            {
+                //Frame.Navigate(typeof(ArticleView), selectedArticle);
+                Frame.Navigate(typeof (MainPage));
+            };
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

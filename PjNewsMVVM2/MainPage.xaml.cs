@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,10 +31,14 @@ namespace PjNewsMVVM2
         public MainPage()
         {
             this.InitializeComponent();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+
 
             //NewsNEW newNEW = new NewsNEW();
             MainNewsViewModel = new NewsViewModel();
         }
+
+
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -42,7 +47,7 @@ namespace PjNewsMVVM2
 
             if (selectedArticle != null)
             {
-                textBlockSelectedTitle.Text = selectedArticle.Title;
+                //textBlockSelectedTitle.Text = selectedArticle.Title;
                 Frame.Navigate(typeof(ArticleView), selectedArticle);
             }
         }
