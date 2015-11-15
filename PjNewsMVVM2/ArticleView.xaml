@@ -10,12 +10,10 @@
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-
-
             <TextBlock x:Name="TextBlockTitle" TextWrapping="WrapWholeWords" Text="Title" 
-                   FontSize="26.667" FontWeight="Bold" Margin="0,0,10,0" />
+                   FontSize="26.667" FontWeight="Bold" Margin="15" />
 
-            <RichTextBlock x:Name="RichContent" />
+            <RichTextBlock x:Name="RichContent" Margin="15" TextWrapping="WrapWholeWords"/>
 
         </StackPanel>
     </ScrollViewer>

@@ -24,6 +24,8 @@
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Vertical">
 
+            
+            
             <ListView x:Name="MainList"
                   SelectionChanged="Selector_OnSelectionChanged"
                 ItemsSource="{x:Bind MainNewsViewModel.Articles, Mode=OneWay}"

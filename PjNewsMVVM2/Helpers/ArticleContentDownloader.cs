@@ -33,20 +33,6 @@ namespace PjNewsMVVM2.Helpers
             return blocks;
         }
 
-        private async Task buttonClickFunction()
-        {
-
-
-            //Add the blocks to the RichTextBlock
-            //rtb1.Blocks.Clear();
-            //foreach (Block b in blocks)
-            //    rtb1.Blocks.Add(b);
-        }
-
-
-
-
-
         public static async Task<HtmlNode> GetFullTextDivHtmlNode(string website)
         {
             HttpClient http = new HttpClient();
