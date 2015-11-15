@@ -6,7 +6,6 @@ using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Newtonsoft.Json;
-using PjNewsMVVM2.Assets;
 using PjNewsMVVM2.Helpers;
 
 namespace PjNewsMVVM2.Data
@@ -32,7 +31,7 @@ namespace PjNewsMVVM2.Data
 
 
 
-            var httpClient = new HttpClient();
+            var httpClient = new HttpClient(); 
             var payload = httpClient.GetStringAsync(requestUri).Result;
 
             var sampleResponse = JsonConvert.DeserializeObject<DownloadedArticle>(payload,
@@ -50,7 +49,7 @@ namespace PjNewsMVVM2.Data
         {
             var httpClient = new HttpClient();
             var payload = httpClient.GetStringAsync(_urlNews).Result;
-            //Task<string> payload = UserDB.Kurwa();
+            //Task<string> payload = UserDb.Kurwa();
             //payload.Result;
 
 

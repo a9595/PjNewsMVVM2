@@ -103,7 +103,7 @@
     <Compile Include="ArticleView.xaml.cs">
       <DependentUpon>ArticleView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assets\UserDB.cs" />
+    <Compile Include="Helpers\ArticleContentDownloader.cs" />
     <Compile Include="Helpers\DownloadedArticle.cs" />
     <Compile Include="Data\ArticleNEW.cs" />
     <Compile Include="Data\NewsGrabber.cs" />
@@ -140,6 +140,11 @@
     <Page Include="ArticleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionary1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>

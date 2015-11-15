@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,14 +31,31 @@ namespace PjNewsMVVM2
         public ArticleView()
         {
             this.InitializeComponent();
-            SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
+            //SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
+            //{
+            //    //Frame.Navigate(typeof(ArticleView), selectedArticle);
+            //    Frame.Navigate(typeof(MainPage));
+            //};
+
+            BackButtonActivate();
+        }
+
+        private void BackButtonActivate()
+        {
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                AppViewBackButtonVisibility.Visible;
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                //Frame.Navigate(typeof(ArticleView), selectedArticle);
-                Frame.Navigate(typeof(MainPage));
+                Debug.WriteLine("BackRequested");
+                if (Frame.CanGoBack)
+                {
+                    Frame.GoBack();
+                    a.Handled = true;
+                }
             };
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             ArticleViewModel article = e.Parameter as ArticleViewModel;
 
@@ -46,9 +64,15 @@ namespace PjNewsMVVM2
             //var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
             //var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
             //string content = article2.Results.First().Content;
-            string content = "content";
+            //string content = "content";
 
-            fillContent(content);
+            var blocks = await ArticleContentDownloader.GetRichTextBoxContentByLink(article.Link);
+
+            RichContent.Blocks.Clear();
+            foreach (Block b in blocks)
+                RichContent.Blocks.Add(b);
+
+            //fillContent(content);
 
             base.OnNavigatedTo(e);
         }
