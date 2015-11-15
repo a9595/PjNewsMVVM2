@@ -31,7 +31,7 @@ namespace PjNewsMVVM2.Data
 
 
 
-            var httpClient = new HttpClient(); 
+            var httpClient = new HttpClient();
             var payload = httpClient.GetStringAsync(requestUri).Result;
 
             var sampleResponse = JsonConvert.DeserializeObject<DownloadedArticle>(payload,
@@ -49,15 +49,9 @@ namespace PjNewsMVVM2.Data
         {
             var httpClient = new HttpClient();
             var payload = httpClient.GetStringAsync(_urlNews).Result;
-            //Task<string> payload = UserDb.Kurwa();
-            //payload.Result;
-
 
             var news = JsonConvert.DeserializeObject<DownloadedNews>(payload,
                 new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-
-
-
 
             return news;
         }
@@ -65,7 +59,6 @@ namespace PjNewsMVVM2.Data
         // Write the Json string in the JSONFILENAME.
         private async Task writeJsonAsync(DownloadedNews newsJson)
         {
-
             var serializer = new DataContractJsonSerializer(typeof(DownloadedNews));
 
             filename = "filename";

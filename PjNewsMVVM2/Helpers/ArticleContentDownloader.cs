@@ -272,6 +272,8 @@ namespace PjNewsMVVM2.Helpers
                 img.Height = bimg.PixelHeight;
                 img.Width = bimg.PixelWidth;
             }
+            img.MaxWidth = 400;
+            img.HorizontalAlignment = HorizontalAlignment.Center;
         }
 
         private static Inline GenerateHyperLink(HtmlNode node)
