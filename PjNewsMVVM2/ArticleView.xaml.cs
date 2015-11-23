@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -72,7 +73,16 @@ namespace PjNewsMVVM2
             var articleLinkUri = new Uri(article.Link, UriKind.Absolute);
             if (articleLinkUri.Authority == "www.pja.edu.pl")
             {
-                await FillRTB(article);
+                try
+                {
+                    await FillRTB(article);
+                }
+                catch (Exception)
+                {
+
+                    TextBlockLoading.Text = "Can't load the page";
+                }
+                
             }
             
 
@@ -91,6 +101,7 @@ namespace PjNewsMVVM2
             RichContent.Blocks.Clear();
             foreach (Block b in blocks)
                 RichContent.Blocks.Add(b);
+            TextBlockLoading.Visibility = Visibility.Collapsed;
         }
 
         private void fillContent(string Content)

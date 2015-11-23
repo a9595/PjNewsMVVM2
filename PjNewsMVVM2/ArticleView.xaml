@@ -7,13 +7,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.BottomAppBar >
+        <CommandBar Background="#F44336" Foreground="White">
+            <AppBarButton x:Name="AppBarButtonGoToLink" Label="Open in a browser" Icon="Link" Foreground="White" />
+            <AppBarButton x:Name="AppBarButtonRefresh" Label="Refresh" Icon="Refresh" Foreground="White"/>
+        </CommandBar>
+    </Page.BottomAppBar>
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
             <TextBlock x:Name="TextBlockTitle" TextWrapping="WrapWholeWords" Text="Title" 
-                   FontSize="26.667" FontWeight="Bold" Margin="15" />
-
+                   FontSize="26.667" FontWeight="Bold" Margin="15,15,15,0" />
+            <TextBlock x:Name="TextBlockLoading" Text="Loading an article... " Margin="15"></TextBlock>
             <RichTextBlock x:Name="RichContent" Margin="15" TextWrapping="WrapWholeWords"/>
+            
 
         </StackPanel>
     </ScrollViewer>

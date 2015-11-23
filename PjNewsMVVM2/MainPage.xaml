@@ -9,42 +9,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:PjNewsMVVM2.ViewModels"
     mc:Ignorable="d">
-    <Page.BottomAppBar>
-        <CommandBar>
-            <AppBarButton x:Name="SelectItmesBtn" FontFamily="OverflowCheckGlyph" Label="Select Items" >
-                <AppBarButton.Icon>
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xe762;" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add"  />
-            <AppBarButton x:Name="DeleteItemBtn" Label="Delete Item" Icon="Delete" />
-            <AppBarButton x:Name="DeleteItemsBtn" Label="Delete Items" Icon="Delete" />
-            <AppBarButton x:Name="CancelSelectionBtn" Label="Cancel" Icon="Cancel"/>
-        </CommandBar>
-    </Page.BottomAppBar>
+    
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Vertical">
 
-            
-            
+
+
             <ListView x:Name="MainList"
                   SelectionChanged="Selector_OnSelectionChanged" 
                 ItemsSource="{x:Bind MainNewsViewModel.Articles, Mode=OneWay}"
                   MinWidth="250" Margin="5">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <StackPanel Margin="10,15,10,0">
                             <TextBlock Text="{Binding Title}" 
-                           Margin="20,0,20,8"
-                           FontSize="24" 
-                           FontStyle="Italic" 
-                           FontWeight="SemiBold"
-                           Foreground="DarkBlue" />
+                           
+                           FontSize="14"
+                           FontWeight="Normal" HorizontalAlignment="Left"
+                                       TextWrapping="WrapWholeWords"
+                           Foreground="Black" FontFamily="Yu Gothic Light" Margin="0,15,0,0" />
+
                             <TextBlock Text="{Binding Date}" 
-                           Margin="20,0,20,8"
-                           FontSize="16"
-                           Foreground="DarkGray" 
-                           Opacity="0.8" />
+                            HorizontalAlignment="Left"
+                           FontSize="12"
+                           Foreground="DarkGray" Margin="10,5,0,0"  />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
