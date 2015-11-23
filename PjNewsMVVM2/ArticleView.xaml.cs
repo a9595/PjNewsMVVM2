@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -66,15 +68,29 @@ namespace PjNewsMVVM2
             //string content = article2.Results.First().Content;
             //string content = "content";
 
-            var blocks = await ArticleContentDownloader.GetRichTextBoxContentByLink(article.Link);
+            //check facebook link:
+            var articleLinkUri = new Uri(article.Link, UriKind.Absolute);
+            if (articleLinkUri.Authority == "www.pja.edu.pl")
+            {
+                await FillRTB(article);
+            }
+            
 
-            RichContent.Blocks.Clear();
-            foreach (Block b in blocks)
-                RichContent.Blocks.Add(b);
+
 
             //fillContent(content);
 
             base.OnNavigatedTo(e);
+        }
+
+        private async Task FillRTB(ArticleViewModel article)
+        {
+            var blocks = await ArticleContentDownloader.GetRichTextBoxContentByLink(article.Link);
+
+
+            RichContent.Blocks.Clear();
+            foreach (Block b in blocks)
+                RichContent.Blocks.Add(b);
         }
 
         private void fillContent(string Content)

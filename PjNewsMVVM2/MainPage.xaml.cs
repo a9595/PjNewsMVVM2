@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -55,15 +56,26 @@ namespace PjNewsMVVM2
 
 
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //var selectedArticle = sender as ArticleViewModel;
             var selectedArticle = ((sender as ListView).SelectedItem) as ArticleViewModel;
 
             if (selectedArticle != null)
             {
-                //textBlockSelectedTitle.Text = selectedArticle.Title;
-                Frame.Navigate(typeof(ArticleView), selectedArticle);
+                var articleLinkUri = new Uri(selectedArticle.Link, UriKind.Absolute);
+                //check facebook link
+                if (articleLinkUri.Authority == "www.pja.edu.pl")
+                {
+
+                    Frame.Navigate(typeof(ArticleView), selectedArticle);
+                }
+                else //faceboook link for ex
+                {
+                    await Launcher.LaunchUriAsync(articleLinkUri);
+
+                }
+
             }
         }
     }
