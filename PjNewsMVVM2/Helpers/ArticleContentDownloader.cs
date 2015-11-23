@@ -222,7 +222,7 @@ namespace PjNewsMVVM2.Helpers
                 img.ImageFailed += img_ImageFailed;
                 iui.Child = img;
                 s.Inlines.Add(iui);
-                s.Inlines.Add(new LineBreak());
+                //s.Inlines.Add(new LineBreak());
             }
             catch (Exception ex)
             {
@@ -237,20 +237,21 @@ namespace PjNewsMVVM2.Helpers
 
         static void img_ImageOpened(object sender, RoutedEventArgs e)
         {
+            int maxWidth = 400, maxHeight = 200;
             Image img = sender as Image;
             BitmapImage bimg = img.Source as BitmapImage;
-            if (bimg.PixelWidth > 800 || bimg.PixelHeight > 600)
+            if (bimg.PixelWidth > maxWidth || bimg.PixelHeight > maxHeight)
             {
-                img.Width = 800; img.Height = 600;
-                if (bimg.PixelWidth > 800)
+                img.Width = maxWidth; img.Height = maxHeight;
+                if (bimg.PixelWidth > maxWidth)
                 {
-                    img.Width = 800;
-                    img.Height = (800.0 / (double)bimg.PixelWidth) * bimg.PixelHeight;
+                    img.Width = maxWidth;
+                    img.Height = (maxWidth / (double)bimg.PixelWidth) * bimg.PixelHeight;
                 }
-                if (img.Height > 600)
+                if (img.Height > maxHeight)
                 {
-                    img.Height = 600;
-                    img.Width = (600.0 / (double)img.Height) * img.Width;
+                    img.Height = maxHeight;
+                    img.Width = (maxHeight / (double)img.Height) * img.Width;
                 }
             }
             else
@@ -258,7 +259,7 @@ namespace PjNewsMVVM2.Helpers
                 img.Height = bimg.PixelHeight;
                 img.Width = bimg.PixelWidth;
             }
-            img.MaxWidth = 400;
+            //img.MaxWidth = 400;
             img.HorizontalAlignment = HorizontalAlignment.Center;
         }
 
