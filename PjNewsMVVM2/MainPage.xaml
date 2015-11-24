@@ -25,14 +25,14 @@
                             <TextBlock Text="{Binding Title}" 
                            
                            FontSize="14"
-                           FontWeight="Normal" HorizontalAlignment="Left"
+                           FontWeight="Normal" HorizontalAlignment="Stretch"
                                        TextWrapping="WrapWholeWords"
                            Foreground="Black" FontFamily="Yu Gothic Light" Margin="0,15,0,0" />
 
                             <TextBlock Text="{Binding Date}" 
                             HorizontalAlignment="Left"
                            FontSize="12"
-                           Foreground="DarkGray" Margin="10,5,0,0"  />
+                           Foreground="DarkGray" Margin="0,7,0,0"  />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
