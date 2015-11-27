@@ -31,6 +31,8 @@ namespace PjNewsMVVM2
     /// </summary>
     public sealed partial class ArticleView : Page
     {
+        private ArticleViewModel _article;
+
         public ArticleView()
         {
             this.InitializeComponent();
@@ -60,37 +62,36 @@ namespace PjNewsMVVM2
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            ArticleViewModel article = e.Parameter as ArticleViewModel;
+            _article = e.Parameter as ArticleViewModel;
 
-            TextBlockTitle.Text = article.Title;
-
-            //var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
-            //var article2 = NewsGrabber.GetAlternativeArticleSimply(article.Link);
-            //string content = article2.Results.First().Content;
-            //string content = "content";
-
-            //check facebook link:
-            var articleLinkUri = new Uri(article.Link, UriKind.Absolute);
-            if (articleLinkUri.Authority == "www.pja.edu.pl")
-            {
-                try
-                {
-                    await FillRTB(article);
-                }
-                catch (Exception)
-                {
-
-                    TextBlockLoading.Text = "Can't load the page";
-                }
-                
-            }
-            
-
+            await DownloadArticle();
 
 
             //fillContent(content);
 
             base.OnNavigatedTo(e);
+        }
+
+        private async Task DownloadArticle()
+        {
+            if (_article != null)
+            {
+                TextBlockTitle.Text = _article.Title;
+
+                //check facebook link:
+                var articleLinkUri = new Uri(_article.Link, UriKind.Absolute);
+                if (articleLinkUri.Authority == "www.pja.edu.pl")
+                {
+                    try
+                    {
+                        await FillRTB(_article);
+                    }
+                    catch (Exception)
+                    {
+                        TextBlockLoading.Text = "Can't load the page";
+                    }
+                }
+            }
         }
 
         private async Task FillRTB(ArticleViewModel article)
@@ -118,6 +119,22 @@ namespace PjNewsMVVM2
             // Add the paragraph to the RichTextBox.
             RichContent.Blocks.Add(myParagraph);
 
+        }
+
+        private async void AppBarButtonRefresh_OnClick(object sender, RoutedEventArgs e)
+        {
+            TextBlockLoading.Visibility = Visibility.Visible; // loading page... show
+
+            await DownloadArticle();
+        }
+
+        private async void AppBarButtonGoToLink_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_article == null) return;
+
+            Uri articleLinkUri = new Uri(_article.Link, UriKind.Absolute);
+
+            await Launcher.LaunchUriAsync(articleLinkUri);
         }
     }
 }

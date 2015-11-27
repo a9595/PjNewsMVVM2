@@ -9,8 +9,8 @@
     mc:Ignorable="d">
     <Page.BottomAppBar >
         <CommandBar Background="#F44336" Foreground="White">
-            <AppBarButton x:Name="AppBarButtonGoToLink" Label="Open in a browser" Icon="Link" Foreground="White" />
-            <AppBarButton x:Name="AppBarButtonRefresh" Label="Refresh" Icon="Refresh" Foreground="White"/>
+            <AppBarButton x:Name="AppBarButtonRefresh" Label="Refresh" Icon="Refresh" Foreground="White" Click="AppBarButtonRefresh_OnClick"/>
+            <AppBarButton x:Name="AppBarButtonGoToLink" Label="Open in a browser" Icon="Link" Foreground="White" Click="AppBarButtonGoToLink_OnClick" />
         </CommandBar>
     </Page.BottomAppBar>
     <ScrollViewer>
