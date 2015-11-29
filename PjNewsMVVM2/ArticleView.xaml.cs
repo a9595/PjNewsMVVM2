@@ -123,6 +123,7 @@ namespace PjNewsMVVM2
 
         private async void AppBarButtonRefresh_OnClick(object sender, RoutedEventArgs e)
         {
+            RichContent.Blocks.Clear();
             TextBlockLoading.Visibility = Visibility.Visible; // loading page... show
 
             await DownloadArticle();
