@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:PjNewsMVVM2.ViewModels"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="OnLoaded">
     
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Vertical">
@@ -16,7 +16,8 @@
 
 
             <ListView x:Name="MainList"
-                      SelectionChanged="Selector_OnSelectionChanged"
+IsItemClickEnabled="True" ItemClick="MainList_OnItemClick"
+                      
                   
                      
                 ItemsSource="{x:Bind MainNewsViewModel.Articles, Mode=OneWay}"
