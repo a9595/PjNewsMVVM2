@@ -14,6 +14,8 @@ namespace PjNewsMVVM2.Model
         {
             Articles = new List<ArticleNEW>();
             // TODO: Articels = Service.GetArticles
+
+
             DownloadedNews downloadedDownloadedNews = NewsGrabber.GetNews();
             foreach (var articleDownloaded in downloadedDownloadedNews.Results)
             {

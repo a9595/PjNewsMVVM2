@@ -108,6 +108,7 @@
       <DependentUpon>ArticleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ArticleContentDownloader.cs" />
+    <Compile Include="Helpers\DataServer.cs" />
     <Compile Include="Helpers\DownloadedArticle.cs" />
     <Compile Include="Data\ArticleNEW.cs" />
     <Compile Include="Data\NewsGrabber.cs" />
