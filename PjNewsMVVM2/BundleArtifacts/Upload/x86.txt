@@ -1,2 +1,2 @@
-MainPackage=C:\VisualStudioFiles\Projects\PjNewsMVVM2\PjNewsMVVM2\bin\x86\Release\Upload\PjNewsMVVM2_1.1.3.0_x86.appx
-SymbolPackage=C:\VisualStudioFiles\Projects\PjNewsMVVM2\PjNewsMVVM2\AppPackages\PjNewsMVVM2_1.1.3.0\PjNewsMVVM2_1.1.3.0_x86.appxsym
+MainPackage=C:\VisualStudioFiles\Projects\PjNewsMVVM2\PjNewsMVVM2\bin\x86\Release\Upload\PjNewsMVVM2_1.1.4.0_x86.appx
+SymbolPackage=C:\VisualStudioFiles\Projects\PjNewsMVVM2\PjNewsMVVM2\AppPackages\PjNewsMVVM2_1.1.4.0\PjNewsMVVM2_1.1.4.0_x86.appxsym

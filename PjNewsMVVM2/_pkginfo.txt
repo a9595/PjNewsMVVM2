@@ -1,1 +1,1 @@
-C:\VisualStudioFiles\Projects\PjNewsMVVM2\PjNewsMVVM2\AppPackages\PjNewsMVVM2_1.1.3.0\PjNewsMVVM2_1.1.3.0_x86_x64_arm.appxbundle
+C:\VisualStudioFiles\Projects\PjNewsMVVM2\PjNewsMVVM2\AppPackages\PjNewsMVVM2_1.1.4.0\PjNewsMVVM2_1.1.4.0_x86_x64_arm.appxbundle

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
@@ -53,8 +55,38 @@ namespace PjNewsMVVM2.Data
             var news = JsonConvert.DeserializeObject<DownloadedNews>(payload,
                 new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 
+            ArrayList toChangeNews = new ArrayList((ICollection) news.Results);
+            
+            //
+            for (int i = news.Results.Count; i-- > news.Results.Count - 15;)
+            {
+                //do something
+                news.Results[i].Date += ".14";
+            }
+
+            int deltaCount = 0;
+            int intarator = 0;
+            do
+            {
+
+                news.Results[intarator].Date += ".15";
+
+                intarator++;
+                deltaCount = news.Results.Count - intarator;
+
+
+
+
+            } while (deltaCount > 15);
+            var newsEditedDates = news.Results.Skip(Math.Max(0, news.Results.Count() - 10));
+            
+            //
+            
+
             return news;
         }
+
+
 
         // Write the Json string in the JSONFILENAME.
         private async Task writeJsonAsync(DownloadedNews newsJson)
