@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PjNewsMVVM2.Data;
 using PjNewsMVVM2.Helpers;
 using PJAnews.Model;
 
 namespace PjNewsMVVM2.Model
 {
-    class NewsNEW
+    class News
     {
         // --List Poeple
         public List<Article> Articles { get; set; }
 
 
-        public NewsNEW()
+        public News()
         {
             Articles = new List<Article>();
             // TODO: Articels = Service.GetArticles
@@ -20,9 +21,9 @@ namespace PjNewsMVVM2.Model
             //DownloadNews();
         }
 
-        public void DownloadNews()
+        public async Task DownloadNews()
         {
-            DownloadedNews downloadedDownloadedNews = NewsGrabber.GetNews();
+            DownloadedNews downloadedDownloadedNews = await NewsGrabber.GetNews();
             foreach (var articleDownloaded in downloadedDownloadedNews.Results)
             {
                 Article article = new Article(
@@ -34,7 +35,7 @@ namespace PjNewsMVVM2.Model
             }
         }
 
-        public void Add(Article article)
+        private void Add(Article article)
         {
             Articles.Add(article);
         }

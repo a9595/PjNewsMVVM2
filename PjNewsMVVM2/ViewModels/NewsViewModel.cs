@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using PjNewsMVVM2.Model;
 using Prism.Mvvm;
 
@@ -7,7 +8,7 @@ namespace PjNewsMVVM2.ViewModels
     public class NewsViewModel : BindableBase
     {
         //fields
-        NewsNEW news;
+        News _news;
         ObservableCollection<ArticleViewModel> _articles
                     = new ObservableCollection<ArticleViewModel>();
         private int _selectedIndex;
@@ -17,13 +18,13 @@ namespace PjNewsMVVM2.ViewModels
             //SetDownloadedData();
         }
 
-        public void SetDownloadedData()
+        public async Task SetDownloadedData()
         {
-            
-            news = new NewsNEW();
-            news.DownloadNews();
 
-            foreach (var article in news.Articles)
+            _news = new News();
+            await _news.DownloadNews();
+
+            foreach (var article in _news.Articles)
             {
                 ArticleViewModel newArticleViewModel = new ArticleViewModel(
                     article.Date,

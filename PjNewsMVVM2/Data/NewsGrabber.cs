@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Net.Http;
+
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Web.Http;
 using Newtonsoft.Json;
 using PjNewsMVVM2.Helpers;
 
@@ -17,7 +18,7 @@ namespace PjNewsMVVM2.Data
 
         private string filename = "newsJsons";
 
-        public static DownloadedArticle GetAlternativeArticleSimply(string url)
+        public static async Task<DownloadedArticle> GetAlternativeArticleSimply(string url)
         {
             string urlPartAPI1 =
                 "https://api.import.io/store/data/40ab96a9-c714-4844-9eb6-20bd86cf8501/_query?input/webpage/url=";
@@ -31,7 +32,8 @@ namespace PjNewsMVVM2.Data
 
 
             var httpClient = new HttpClient();
-            var payload = httpClient.GetStringAsync(requestUri).Result;
+            var payload = await httpClient.GetStringAsync(requestUri);
+
 
             var sampleResponse = JsonConvert.DeserializeObject<DownloadedArticle>(payload,
                 new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
@@ -44,10 +46,11 @@ namespace PjNewsMVVM2.Data
         }
 
 
-        public static DownloadedNews GetNews()
+        public static async Task<DownloadedNews> GetNews()
         {
             var httpClient = new HttpClient();
-            var payload = httpClient.GetStringAsync(_urlNews).Result;
+            //var payload = await httpClient.GetStringAsync(_urlNews);
+            var payload = await httpClient.GetStringAsync(new Uri(_urlNews, UriKind.Absolute));
 
             var news = JsonConvert.DeserializeObject<DownloadedNews>(payload,
                 new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });

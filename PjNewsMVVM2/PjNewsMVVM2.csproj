@@ -112,7 +112,7 @@
     <Compile Include="Helpers\DownloadedArticle.cs" />
     <Compile Include="Model\Article.cs" />
     <Compile Include="Data\NewsGrabber.cs" />
-    <Compile Include="Model\NewsNEW.cs" />
+    <Compile Include="Model\News.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
