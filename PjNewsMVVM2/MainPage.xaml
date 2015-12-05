@@ -4,17 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:PjNewsMVVM2"
     NavigationCacheMode="Enabled"
-    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:PjNewsMVVM2.ViewModels"
-    mc:Ignorable="d" Loaded="OnLoaded">
-
+    mc:Ignorable="d" Loaded="OnLoaded" Loading="OnLoading">
     <ScrollViewer>
         <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Orientation="Vertical">
-
-
-
+            <TextBlock x:Name="TextBlockLoading" Text="Loading news... " Margin="15"></TextBlock>
             <ListView x:Name="MainList"
 IsItemClickEnabled="True" ItemClick="MainList_OnItemClick"
                       
@@ -31,7 +27,6 @@ IsItemClickEnabled="True" ItemClick="MainList_OnItemClick"
                            FontWeight="Normal" HorizontalAlignment="Stretch"
                                        TextWrapping="WrapWholeWords"
                            Foreground="Black" FontFamily="Yu Gothic Light" Margin="0,15,0,0" />
-
                             <TextBlock Text="{Binding Date}" 
                             HorizontalAlignment="Left"
                            FontSize="12"
@@ -40,12 +35,8 @@ IsItemClickEnabled="True" ItemClick="MainList_OnItemClick"
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackPanel>
     </ScrollViewer>
-
-
-    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>-->
+    <!--<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Grid>-->
 </Page>
+

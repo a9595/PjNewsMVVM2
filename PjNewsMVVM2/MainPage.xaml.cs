@@ -58,11 +58,16 @@ namespace PjNewsMVVM2
 
         }
 
-        private async void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await MainNewsViewModel.SetDownloadedData();
+
 
             if (MainList != null) MainList.SelectedIndex = -1;
+        }
+
+        private async void OnLoading(FrameworkElement sender, object args)
+        {
+            await MainNewsViewModel.SetDownloadedData();
         }
     }
 }
