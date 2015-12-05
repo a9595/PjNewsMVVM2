@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PjNewsMVVM2.Data
+namespace PJAnews.Model
 {
-    public class ArticleNEW
+    public class Article
     {
         public string Date { get; set; }
         public string Link { get; set; }
@@ -10,7 +10,7 @@ namespace PjNewsMVVM2.Data
         public string Content { get; set; }
 
 
-        public ArticleNEW(string date, string link, string title, string content)
+        public Article(string date, string link, string title, string content)
         {
             Date = date;
             Link = link;
@@ -18,7 +18,7 @@ namespace PjNewsMVVM2.Data
             Content = content;
         }
 
-        public ArticleNEW(string date, string link, string title)
+        public Article(string date, string link, string title)
         {
             Date = date;
             Link = link;
@@ -26,9 +26,9 @@ namespace PjNewsMVVM2.Data
             Content = String.Empty;
         }
 
-        public ArticleNEW()
+        public Article()
         {
-            
+
         }
     }
 }

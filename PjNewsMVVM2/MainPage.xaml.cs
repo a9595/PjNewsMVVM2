@@ -40,7 +40,7 @@ namespace PjNewsMVVM2
         public MainPage()
         {
             this.InitializeComponent();
-           
+
 
             //NewsNEW newNEW = new NewsNEW();
             if (!_isDownloaded && MainNewsViewModel == null)
@@ -85,26 +85,28 @@ namespace PjNewsMVVM2
             //var selectedArticle = ((sender as ListView).SelectedItem) as ArticleViewModel;
 
             if (selectedArticle == null) return;
-            
-                var articleLinkUri = new Uri(selectedArticle.Link, UriKind.Absolute);
-                //check facebook link
-                if (articleLinkUri.Authority == "www.pja.edu.pl")
-                {
 
-                    Frame.Navigate(typeof(ArticleView), selectedArticle);
-                }
-                else //faceboook link for ex
-                {
-                    await Launcher.LaunchUriAsync(articleLinkUri);
+            var articleLinkUri = new Uri(selectedArticle.Link, UriKind.Absolute);
+            //check facebook link
+            if (articleLinkUri.Authority == "www.pja.edu.pl")
+            {
 
-                }
+                Frame.Navigate(typeof(ArticleView), selectedArticle);
+            }
+            else //faceboook link for ex
+            {
+                await Launcher.LaunchUriAsync(articleLinkUri);
 
-            
+            }
+
+
 
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            MainNewsViewModel.SetDownloadedData();
+
             if (MainList != null) MainList.SelectedIndex = -1;
         }
     }

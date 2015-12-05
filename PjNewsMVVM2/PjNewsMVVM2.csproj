@@ -110,7 +110,7 @@
     <Compile Include="Helpers\ArticleContentDownloader.cs" />
     <Compile Include="Helpers\DataServer.cs" />
     <Compile Include="Helpers\DownloadedArticle.cs" />
-    <Compile Include="Data\ArticleNEW.cs" />
+    <Compile Include="Model\Article.cs" />
     <Compile Include="Data\NewsGrabber.cs" />
     <Compile Include="Model\NewsNEW.cs" />
     <Compile Include="MainPage.xaml.cs">

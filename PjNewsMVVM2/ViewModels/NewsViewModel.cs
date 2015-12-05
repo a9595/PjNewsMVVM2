@@ -14,7 +14,15 @@ namespace PjNewsMVVM2.ViewModels
 
         public NewsViewModel()
         {
+            //SetDownloadedData();
+        }
+
+        public void SetDownloadedData()
+        {
+            
             news = new NewsNEW();
+            news.DownloadNews();
+
             foreach (var article in news.Articles)
             {
                 ArticleViewModel newArticleViewModel = new ArticleViewModel(
