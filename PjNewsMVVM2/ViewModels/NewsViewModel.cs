@@ -16,14 +16,14 @@ namespace PjNewsMVVM2.ViewModels
         public NewsViewModel()
         {
             //SetDownloadedData();
+            _news = new News();
         }
 
-        public async Task SetDownloadedData()
+        public async Task DownloadNews()
         {
-
-            _news = new News();
             await _news.DownloadNews();
 
+            //add to articles
             foreach (var article in _news.Articles)
             {
                 ArticleViewModel newArticleViewModel = new ArticleViewModel(
@@ -34,7 +34,15 @@ namespace PjNewsMVVM2.ViewModels
 
                 _articles.Add(newArticleViewModel);
             }
+
         }
+
+
+        public void LoadCachedData()
+        {
+            _news.LoadCachedNews();
+        }
+
 
 
         //properties

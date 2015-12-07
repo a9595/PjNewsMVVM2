@@ -41,6 +41,7 @@ namespace PJAnews.Helpers
                 using (var targetFile = IsoFile.CreateFile(TargetFileName))
                 {
                     _mySerializer.WriteObject(targetFile, sourceData);
+                   
                 }
             }
             catch (Exception e)

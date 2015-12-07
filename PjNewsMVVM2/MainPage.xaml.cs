@@ -70,9 +70,10 @@ namespace PjNewsMVVM2
 
         private async void OnLoading(FrameworkElement sender, object args)
         {
+            MainNewsViewModel.LoadCachedData();
             try
             {
-                await MainNewsViewModel.SetDownloadedData();
+                await MainNewsViewModel.DownloadNews();
             }
             catch (Exception ex)
             {
