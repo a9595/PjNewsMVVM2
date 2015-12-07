@@ -60,15 +60,28 @@ namespace PjNewsMVVM2
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            if (_isDownloaded)
+            {
+                if (MainList != null) MainList.SelectedIndex = -1;
 
-
-            if (MainList != null) MainList.SelectedIndex = -1;
+                TextBlockLoading.Visibility = Visibility.Collapsed;
+            }
         }
 
         private async void OnLoading(FrameworkElement sender, object args)
         {
-            await MainNewsViewModel.SetDownloadedData();
+            try
+            {
+                await MainNewsViewModel.SetDownloadedData();
+            }
+            catch (Exception ex)
+            {
+                TextBlockLoading.Text = "No internet connection";
+                _isDownloaded = false;
+                TextBlockLoading.Visibility = Visibility.Visible;
+            }
         }
+
     }
 }
 
