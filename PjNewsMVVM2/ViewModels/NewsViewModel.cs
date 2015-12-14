@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using PjNewsMVVM2.Model;
 using Prism.Mvvm;
 
@@ -12,29 +14,58 @@ namespace PjNewsMVVM2.ViewModels
         ObservableCollection<ArticleViewModel> _articles
                     = new ObservableCollection<ArticleViewModel>();
         private int _selectedIndex;
+        private bool _setProperty;
+
+        private Visibility _visibilityLoading;
+        public Visibility VisibilityLoading {
+            get { return _visibilityLoading; }
+            set
+            {
+                _setProperty = SetProperty(ref _visibilityLoading, value);
+            }
+        }
 
         public NewsViewModel()
         {
             //SetDownloadedData();
+            VisibilityLoading = _visibilityLoading;
             _news = new News();
         }
 
         public async Task DownloadNews()
         {
-            await _news.DownloadNews();
-
-            //add to articles
-            foreach (var article in _news.Articles)
+            //Task downloadTask = MainNewsViewModel.DownloadNews();
+            //await downloadTask.ContinueWith(OnDownloadCompleted);
+            try
             {
-                ArticleViewModel newArticleViewModel = new ArticleViewModel(
-                    article.Date,
-                    article.Link,
-                    article.Title
-                    );
+                Task downloadNewsTask = _news.DownloadNews();
+                await downloadNewsTask.ContinueWith(OnDownloadCompleted);
 
-                _articles.Add(newArticleViewModel);
+                //add to articles
+                foreach (var article in _news.Articles)
+                {
+                    ArticleViewModel newArticleViewModel = new ArticleViewModel(
+                        article.Date,
+                        article.Link,
+                        article.Title
+                        );
+
+                    _articles.Add(newArticleViewModel);
+                }
             }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
 
+            VisibilityLoading = Visibility.Collapsed;
+        }
+
+        private void OnDownloadCompleted(Task obj)
+        {
+            //VisibilityLoading = Visibility.Collapsed;
         }
 
 

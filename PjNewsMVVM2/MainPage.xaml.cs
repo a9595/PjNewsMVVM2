@@ -93,8 +93,9 @@ namespace PjNewsMVVM2
             //MainNewsViewModel.LoadCachedData();
             try
             {
-                Task downloadTask = MainNewsViewModel.DownloadNews();
-                await downloadTask.ContinueWith(OnDownloadCompleted);
+                //Task downloadTask = MainNewsViewModel.DownloadNews();
+                //await downloadTask.ContinueWith(OnDownloadCompleted);
+                await MainNewsViewModel.DownloadNews();
                 //download it in not async way to show splash screen while loading (instead of a white screen)
 
             }
@@ -102,7 +103,7 @@ namespace PjNewsMVVM2
             {
                 TextBlockLoading.Text = "No internet connection";
                 _isDownloaded = false;
-                TextBlockLoading.Visibility = Visibility.Visible;
+                //TextBlockLoading.Visibility = Visibility.Visible;
             }
         }
 

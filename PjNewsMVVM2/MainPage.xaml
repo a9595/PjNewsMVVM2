@@ -14,7 +14,8 @@
 
             <TextBlock x:Name="TextBlockLoading"
                        Margin="15"
-                       Text="Loading news... " />
+                       Text="Loading news... "
+                       Visibility="{x:Bind MainNewsViewModel.VisibilityLoading, Mode=OneWay}"  />
             <ListView x:Name="MainList"
                       MinWidth="250"
                       Margin="5"
