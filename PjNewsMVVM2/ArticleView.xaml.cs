@@ -45,8 +45,19 @@ namespace PjNewsMVVM2
             //};
 
             BackButtonActivate();
-            
+
+
         }
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            RotationStoryboard.Begin();
+
+            _article = e.Parameter as ArticleViewModel;
+            await DownloadArticle();
+            //fillContent(content);
+            base.OnNavigatedTo(e);
+        }
+
         private void SetUpPageAnimation()
         {
             TransitionCollection collection = new TransitionCollection();
@@ -73,17 +84,7 @@ namespace PjNewsMVVM2
             };
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            _article = e.Parameter as ArticleViewModel;
 
-            await DownloadArticle();
-
-
-            //fillContent(content);
-
-            base.OnNavigatedTo(e);
-        }
 
         private async Task DownloadArticle()
         {
@@ -102,6 +103,7 @@ namespace PjNewsMVVM2
                     catch (Exception)
                     {
                         TextBlockLoading.Text = "Can't load the page";
+
                     }
                 }
             }
@@ -116,6 +118,7 @@ namespace PjNewsMVVM2
             foreach (Block b in blocks)
                 RichContent.Blocks.Add(b);
             TextBlockLoading.Visibility = Visibility.Collapsed;
+            RotationStoryboard.Stop();
         }
 
         private void fillContent(string Content)
