@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using PjNewsMVVM2.Data;
 using PjNewsMVVM2.Helpers;
@@ -36,6 +37,7 @@ namespace PjNewsMVVM2
         public ArticleView()
         {
             this.InitializeComponent();
+            SetUpPageAnimation();
             //SystemNavigationManager.GetForCurrentView().BackRequested += (s, e) =>
             //{
             //    //Frame.Navigate(typeof(ArticleView), selectedArticle);
@@ -43,8 +45,19 @@ namespace PjNewsMVVM2
             //};
 
             BackButtonActivate();
+            
         }
+        private void SetUpPageAnimation()
+        {
+            TransitionCollection collection = new TransitionCollection();
+            NavigationThemeTransition theme = new NavigationThemeTransition();
 
+            var info = new ContinuumNavigationTransitionInfo();
+
+            theme.DefaultNavigationTransitionInfo = info;
+            collection.Add(theme);
+            this.Transitions = collection;
+        }
         private void BackButtonActivate()
         {
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =

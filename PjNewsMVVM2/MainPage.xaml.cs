@@ -2,6 +2,7 @@
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using PjNewsMVVM2.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -25,7 +26,8 @@ namespace PjNewsMVVM2
         public MainPage()
         {
             this.InitializeComponent();
-
+            SetUpPageAnimation();
+            
 
             //News newNEW = new News();
             if (!_isDownloaded && MainNewsViewModel == null)
@@ -34,6 +36,18 @@ namespace PjNewsMVVM2
 
                 _isDownloaded = true;
             }
+        }
+
+        private void SetUpPageAnimation()
+        {
+            TransitionCollection collection = new TransitionCollection();
+            NavigationThemeTransition theme = new NavigationThemeTransition();
+
+            var info = new ContinuumNavigationTransitionInfo();
+
+            theme.DefaultNavigationTransitionInfo = info;
+            collection.Add(theme);
+            this.Transitions = collection;
         }
 
         private async void MainList_OnItemClick(object sender, ItemClickEventArgs e)
