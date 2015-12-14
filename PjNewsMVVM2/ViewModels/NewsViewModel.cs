@@ -27,6 +27,16 @@ namespace PjNewsMVVM2.ViewModels
             }
         }
 
+        private Visibility _visibilityProgressRing;
+        public Visibility VisibilityProgressRing
+        {
+            get { return _visibilityProgressRing; }
+            set
+            {
+                _setProperty = SetProperty(ref _visibilityProgressRing, value);
+            }
+        }
+
         private string _loadingTextBlockText;
 
         public string LoadingTextBlockText
@@ -39,8 +49,8 @@ namespace PjNewsMVVM2.ViewModels
         public NewsViewModel()
         {
             //SetDownloadedData();
-            VisibilityLoading = _visibilityLoading;
-            LoadingTextBlockText = "Loading...";
+            VisibilityLoading = Visibility.Collapsed;
+            VisibilityProgressRing = Visibility.Visible; // to show that we're loading the data
             _news = new News();
         }
 
@@ -50,6 +60,8 @@ namespace PjNewsMVVM2.ViewModels
             //await downloadTask.ContinueWith(OnDownloadCompleted);
             if (!IsInternet())
             {
+                VisibilityLoading = Visibility.Visible;
+                VisibilityProgressRing = Visibility.Collapsed;
                 LoadingTextBlockText = "No internet connection :(";
                 return;
             }
@@ -68,7 +80,7 @@ namespace PjNewsMVVM2.ViewModels
 
                 _articles.Add(newArticleViewModel);
             }
-            VisibilityLoading = Visibility.Collapsed;
+            VisibilityProgressRing = Visibility.Collapsed;
 
         }
         public static bool IsInternet()

@@ -81,15 +81,19 @@ namespace PjNewsMVVM2
 
             if (_isDownloaded)
             {
-                if (MainList != null) MainList.SelectedIndex = -1;
+                if (MainList != null)
+                {
+                    MainList.SelectedIndex = -1;
+                }
+
 
             }
+
         }
 
         private async void OnLoading(FrameworkElement sender, object args)
         {
             System.Diagnostics.Debug.WriteLine("OnLoading and downloadTask started()");
-
             //MainNewsViewModel.LoadCachedData();
             try
             {
@@ -117,6 +121,8 @@ namespace PjNewsMVVM2
             TextBlockLoading.Visibility = Visibility.Collapsed;
             System.Diagnostics.Debug.WriteLine("OnDownloadCompleted");
         }
+
+       
     }
 }
 
