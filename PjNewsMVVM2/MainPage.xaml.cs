@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,8 +27,10 @@ namespace PjNewsMVVM2
         public MainPage()
         {
             this.InitializeComponent();
+            System.Diagnostics.Debug.WriteLine("MainPage()");
+
             SetUpPageAnimation();
-            
+
 
             //News newNEW = new News();
             if (!_isDownloaded && MainNewsViewModel == null)
@@ -74,20 +77,26 @@ namespace PjNewsMVVM2
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("OnLoaded()");
+
             if (_isDownloaded)
             {
                 if (MainList != null) MainList.SelectedIndex = -1;
 
-                TextBlockLoading.Visibility = Visibility.Collapsed;
             }
         }
 
         private async void OnLoading(FrameworkElement sender, object args)
         {
-            MainNewsViewModel.LoadCachedData();
+            System.Diagnostics.Debug.WriteLine("OnLoading and downloadTask started()");
+
+            //MainNewsViewModel.LoadCachedData();
             try
             {
-                await MainNewsViewModel.DownloadNews();
+                Task downloadTask = MainNewsViewModel.DownloadNews();
+                await downloadTask.ContinueWith(OnDownloadCompleted);
+                //download it in not async way to show splash screen while loading (instead of a white screen)
+
             }
             catch (Exception ex)
             {
@@ -97,6 +106,16 @@ namespace PjNewsMVVM2
             }
         }
 
+        private void OnDownloadCompleted(Task obj)
+        {
+            //TODO: hide progress bar
+            if (TextBlockLoading == null)
+                return;
+
+
+            TextBlockLoading.Visibility = Visibility.Collapsed;
+            System.Diagnostics.Debug.WriteLine("OnDownloadCompleted");
+        }
     }
 }
 
