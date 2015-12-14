@@ -101,7 +101,7 @@ namespace PjNewsMVVM2
             }
             catch (Exception ex)
             {
-                TextBlockLoading.Text = "No internet connection";
+                //TextBlockLoading.Text = "No internet connection";
                 _isDownloaded = false;
                 //TextBlockLoading.Visibility = Visibility.Visible;
             }

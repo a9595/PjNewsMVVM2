@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 using PjNewsMVVM2.Model;
 using Prism.Mvvm;
@@ -17,7 +18,8 @@ namespace PjNewsMVVM2.ViewModels
         private bool _setProperty;
 
         private Visibility _visibilityLoading;
-        public Visibility VisibilityLoading {
+        public Visibility VisibilityLoading
+        {
             get { return _visibilityLoading; }
             set
             {
@@ -25,10 +27,20 @@ namespace PjNewsMVVM2.ViewModels
             }
         }
 
+        private string _loadingTextBlockText;
+
+        public string LoadingTextBlockText
+        {
+            get { return _loadingTextBlockText; }
+            set { _setProperty = SetProperty(ref _loadingTextBlockText, value); }
+        }
+
+
         public NewsViewModel()
         {
             //SetDownloadedData();
             VisibilityLoading = _visibilityLoading;
+            LoadingTextBlockText = "Loading...";
             _news = new News();
         }
 
@@ -36,33 +48,35 @@ namespace PjNewsMVVM2.ViewModels
         {
             //Task downloadTask = MainNewsViewModel.DownloadNews();
             //await downloadTask.ContinueWith(OnDownloadCompleted);
-            try
+            if (!IsInternet())
             {
-                Task downloadNewsTask = _news.DownloadNews();
-                await downloadNewsTask.ContinueWith(OnDownloadCompleted);
-
-                //add to articles
-                foreach (var article in _news.Articles)
-                {
-                    ArticleViewModel newArticleViewModel = new ArticleViewModel(
-                        article.Date,
-                        article.Link,
-                        article.Title
-                        );
-
-                    _articles.Add(newArticleViewModel);
-                }
+                LoadingTextBlockText = "No internet connection :(";
+                return;
             }
-            catch (Exception)
+
+            Task downloadNewsTask = _news.DownloadNews();
+            await downloadNewsTask.ContinueWith(OnDownloadCompleted);
+
+            //add to articles
+            foreach (var article in _news.Articles)
             {
-                
-                throw;
-            }
-            
+                ArticleViewModel newArticleViewModel = new ArticleViewModel(
+                    article.Date,
+                    article.Link,
+                    article.Title
+                    );
 
+                _articles.Add(newArticleViewModel);
+            }
             VisibilityLoading = Visibility.Collapsed;
-        }
 
+        }
+        public static bool IsInternet()
+        {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+            return internet;
+        }
         private void OnDownloadCompleted(Task obj)
         {
             //VisibilityLoading = Visibility.Collapsed;
